@@ -2,7 +2,7 @@
 
 ## Sistema de gestión de libros
 
-[TOC]
+
 
 ### Objetivo general:
 
@@ -14,7 +14,7 @@ El proyecto contará con una base de datos constituida por cuatro tablas. Una **
 
 ### Características técnicas:
 
-El sistema será desarrollado utilizando arquitectura en capas. Inicialmente se comenzará con el desarrollo de las vistas en la capa de Front-End utilizando HTML, CSS, Javascript y jQuery. Se desarrollarán buenas prácticas de maquetación diseñando páginas responsivas para que puedan adaptarse a diferentes formatos de pantallas. Luego se implementara el desarrollo Back-End utilizando lenguaje C# como code behind y ASP.NET para renderizar los resultados Web. La base de datos estará implementada con tecnología Microsoft SQL Server . Por último y para asimilar los conceptos de la arquitectura en capas, se adaptara el código Back-End utilizando el Framework MVC de Microsoft.
+El sistema será desarrollado utilizando arquitectura en capas. Inicialmente se comenzará con el desarrollo de las vistas en la capa de Front-End utilizando HTML, CSS, Javascript y jQuery. Se desarrollarán buenas prácticas de maquetación diseñando páginas responsivas para que puedan adaptarse a diferentes formatos de pantallas. Luego se implementara el desarrollo Back-End utilizando lenguaje C# como code behind y ASP.NET para renderizar los resultados Web. La base de datos estará implementada con tecnología Microsoft SQL Server. Por último y para asimilar los conceptos de la arquitectura en capas, se adaptara el código Back-End utilizando el Framework MVC de Microsoft.
 
 ### Módulos del sistema
 

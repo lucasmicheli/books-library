@@ -1,0 +1,28 @@
+﻿@using AccentureProject.Models
+@model List<Generos>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Mostrar Géneros</title>
+</head>
+<body>
+    <div>
+        <h1>Los géneros disponibles son:</h1>
+        <ul>
+            @foreach (Generos genero in this.Model)
+            {
+                <li>
+                    @genero.NombreGenero
+                </li>
+            }
+        </ul>
+    </div>
+</body>
+</html>

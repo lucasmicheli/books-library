@@ -53,3 +53,14 @@ CREATE TABLE LibrosXAutores (
 	CONSTRAINT FK_IdAutor FOREIGN KEY (IdAutor) REFERENCES Autores(IdAutor)
 );
 GO
+
+/* Inserto algunos libros en la Base de Datos */
+INSERT INTO Libros (Titulo, ISBN, FechaPublicacion, Sinopsis)
+VALUES
+('',
+'',
+'',
+'',
+''
+);
+GO

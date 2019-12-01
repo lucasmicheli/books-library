@@ -1,0 +1,48 @@
+﻿@model IEnumerable<AccentureProyectoIntegrador.Models.Editoriales>
+
+@{
+    Layout = null;
+}
+
+<script>
+    document.ready(function () {
+        InputDeviceInfo.addClass("form-control");
+    })
+</script>
+<div class="text-right">
+    @Html.ActionLink(" ", "Agregar", null,
+    new
+        {
+        @class = "glyphicon glyphicon-plus",
+        style = "font-size:1.5em"
+    })
+</div>
+<table class="table table-hover table-striped">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Nombre Editorial</th>
+            <th class="text-right"></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var p in this.Model)
+        {
+            <tr>
+                <td>@p.IdEditorial</td>
+                <td>@p.NombreEditorial</td>
+                <td class="text-center">
+                    @Html.ActionLink(" ", "Editar", new { Id = p.IdEditorial },
+                    new
+                    {
+                        @class = "glyphicon glyphicon-pencil",
+                        style = "font-size:1.5em"
+                    })
+
+                    &nbsp &nbsp &nbsp
+                    <!--PONER BOTON ELIMINAR-->
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

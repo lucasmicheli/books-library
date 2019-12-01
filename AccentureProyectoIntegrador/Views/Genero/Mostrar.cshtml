@@ -1,0 +1,22 @@
+﻿using AccentureProyectoIntegrador.Models
+@model List<Generos>
+
+
+@{
+    ViewBag.Title = "Mostrar Editoriales";
+}
+
+<h2>Mostrar Editoriales</h2>
+
+<div>
+    <h1>Los editoriales son:</h1>
+    <ul>
+        @foreach (Generos genero in this.Model)
+        {
+            <li>
+                @genero.NombreGenero
+            </li>
+        }
+
+    </ul>
+</div>

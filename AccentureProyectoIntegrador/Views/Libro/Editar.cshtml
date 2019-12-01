@@ -1,0 +1,129 @@
+﻿@using AccentureProyectoIntegrador.Models
+@model Libros
+
+@{
+    ViewBag.Title = "Agregar";
+}
+
+@{
+    AccentureProyectoIntegradorEntities db = new AccentureProyectoIntegradorEntities();
+    List<Autores> autores = db.Autores.OrderBy(au => au.NombreAutor).ToList();
+}
+
+<script>
+    function nuevoAutor() {
+        var lista = document.getElementById("listaAutores");
+        var select = lista.firstElementChild;
+        var copiaSelect = select.cloneNode(true);
+        lista.appendChild(copiaSelect);
+    }
+</script>
+
+
+@using (Html.BeginForm())
+{
+    @Html.LabelFor(book => book.Titulo)
+    @Html.EditorFor(book => book.Titulo,
+    new
+    {
+            htmlAttributes = new
+            {
+                @class = "form-control",
+        placeholder = "Ingrese título del libro"
+        }
+    });
+
+    <div>Autores:</div>
+    <div id="listaAutores">
+
+        @if (this.Model != null)
+        {
+            foreach (Autores autorLibro in this.Model.Autores)
+            {
+                <select name="autores" class="form-control">
+                    <option>Seleccione un autor...</option>
+                    @foreach (Autores autorActual in autores)
+                    {
+                        <option @(autorActual.IdAutor.Equals(autorLibro.IdAutor) ? "selected" : "")
+                                value="@autorActual.IdAutor">
+                            @autorActual.NombreAutor
+                        </option>
+                    }
+                </select>
+            }
+        }
+        else
+        {
+            <select name="autores" class="form-control">
+                <option selected>Seleccione un autor...</option>
+                @foreach (Autores autor in autores)
+                {
+                    <option value="@autor.IdAutor">@autor.NombreAutor</option>
+                }
+            </select>
+        }
+    </div>
+    <div class="text-right">
+        <a onclick="nuevoAutor()">Agregar Autor</a>
+    </div>
+
+    <button class="btn btn-primary form-control" style="margin-top:1em">
+        Enviar
+    </button>
+
+    <script>
+        function postbackForm() {
+            var request = new XMLHttpRequest();
+            request.open("POST", window.location.pathname)
+            request.onreadystatechange = function (resp) {
+                if ((resp.currentTarget.status == 200) && (resp.currentTarget.readyState == 4)) {
+                    var btn = document.getElementById("mostrarModal");
+                    var msg = document.getElementById("contenidoInformacion");
+                    msg.innerHTML = resp.currentTarget
+                }
+            }
+            var formulario = document.getElementsByName("form")[0];
+            request.send(new FormData(formulario));
+        }
+    </script>
+}
+
+<script>
+    function postbackForm() {
+        var request = new XMLHttpRequest();
+        request.open("POST", window.location.pathname)
+        request.onreadystatechange = function (resp) {
+            if ((resp.currentTarget.status == 200)
+                && (resp.currentTarget.readyState == 4)) {
+                var btn = document.getElementById("mostrarModal");
+                var msg = document.getElementById("contenidoInformacion");
+                msg.innerHTML = resp.currentTarget.responseText;
+                btn.click();
+            }
+        }
+        var formulario = document.getElementsByTagName("form")[0];
+        request.send(new FormData(formulario));
+    }
+</script>
+
+<button type="button" class="btn btn-primary form-control"
+        style="margin-top:1em" onclick="postbackForm()">
+    Enviar con Ajax
+</button>
+
+
+<button type="button" data-toggle="modal" data-target="#myModal"
+        style="display:none" id="mostrarModal">
+</button>
+
+<div id="myModal" class="modal fade container">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header text-center alert-info"><h3>Información</h3></div>
+            <div class="modal-body text-center" id="contenidoInformacion"></div>
+            <div class="modal-footer text-right">
+                <button type="button" class="btn btn-info" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>

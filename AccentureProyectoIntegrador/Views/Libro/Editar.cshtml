@@ -15,6 +15,7 @@
         var lista = document.getElementById("listaAutores");
         var select = lista.firstElementChild;
         var copiaSelect = select.cloneNode(true);
+        copiaSelect.selectedIndex = 0;
         lista.appendChild(copiaSelect);
     }
 </script>
@@ -22,14 +23,15 @@
 
 @using (Html.BeginForm())
 {
-    @Html.LabelFor(book => book.Titulo)
-    @Html.EditorFor(book => book.Titulo,
+    @Html.LabelFor(libro => libro.Titulo)
+    @Html.EditorFor(libro => libro.Titulo,
     new
     {
+
             htmlAttributes = new
             {
                 @class = "form-control",
-        placeholder = "Ingrese título del libro"
+            placeholder = "Ingrese título del libro"
         }
     });
 
@@ -79,38 +81,20 @@
                 if ((resp.currentTarget.status == 200) && (resp.currentTarget.readyState == 4)) {
                     var btn = document.getElementById("mostrarModal");
                     var msg = document.getElementById("contenidoInformacion");
-                    msg.innerHTML = resp.currentTarget
+                    msg.innerHTML = resp.currentTarget.responseText;
+                    btn.click();
                 }
             }
             var formulario = document.getElementsByName("form")[0];
             request.send(new FormData(formulario));
         }
     </script>
+
+    <button type="button" class="btn btn-primary form-control"
+            style="margin-top:1em" onclick="postbackForm()">
+        Enviar con Ajax
+    </button>
 }
-
-<script>
-    function postbackForm() {
-        var request = new XMLHttpRequest();
-        request.open("POST", window.location.pathname)
-        request.onreadystatechange = function (resp) {
-            if ((resp.currentTarget.status == 200)
-                && (resp.currentTarget.readyState == 4)) {
-                var btn = document.getElementById("mostrarModal");
-                var msg = document.getElementById("contenidoInformacion");
-                msg.innerHTML = resp.currentTarget.responseText;
-                btn.click();
-            }
-        }
-        var formulario = document.getElementsByTagName("form")[0];
-        request.send(new FormData(formulario));
-    }
-</script>
-
-<button type="button" class="btn btn-primary form-control"
-        style="margin-top:1em" onclick="postbackForm()">
-    Enviar con Ajax
-</button>
-
 
 <button type="button" data-toggle="modal" data-target="#myModal"
         style="display:none" id="mostrarModal">

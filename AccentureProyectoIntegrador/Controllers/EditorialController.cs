@@ -10,18 +10,31 @@ namespace AccentureProyectoIntegrador.Controllers
 {
     public class EditorialController : Controller
     {
-        private AccentureProyectoIntegradorEntities baseDatos;
+        private AccentureProyectoIntegradorEntities db;
 
         public EditorialController()
         {
-            this.baseDatos = new AccentureProyectoIntegradorEntities();
+            this.db = new AccentureProyectoIntegradorEntities();
+        }
+
+        // Métodos LISTAR
+        public ActionResult Listar()
+        {
+            List<Editoriales> editoriales = this.db.Editoriales.OrderBy(e => e.NombreEditorial).ToList();
+            return View(editoriales);
+        }
+
+        public ActionResult JsonListar()
+        {
+            List<Editoriales> editoriales = this.db.Editoriales.OrderBy(e => e.NombreEditorial).ToList();
+            return Json(editoriales, JsonRequestBehavior.AllowGet);
         }
 
         // Métodos EDITAR
         public ActionResult Editar(int id)
         {
             this.ViewBag.TituloPagina = "Editar Editorial";
-            Editoriales editorial = this.baseDatos.Editoriales.Find(id);
+            Editoriales editorial = this.db.Editoriales.Find(id);
             return View(editorial);
         }
 
@@ -29,25 +42,12 @@ namespace AccentureProyectoIntegrador.Controllers
         public ActionResult Editar(Editoriales editorial)
         {
             if (this.ModelState.IsValid) {
-                this.baseDatos.Editoriales.Add(editorial);
-                this.baseDatos.Entry(editorial).State = EntityState.Modified;
-                this.baseDatos.SaveChanges();
+                this.db.Editoriales.Add(editorial);
+                this.db.Entry(editorial).State = EntityState.Modified;
+                this.db.SaveChanges();
                 return Content("Actualización de Editorial correcta.");
             }
             return new HttpStatusCodeResult(500, "Error de Servidor.");
-        }
-
-        // Métodos LISTAR
-        public ActionResult Listar()
-        {
-            List<Editoriales> editoriales = this.baseDatos.Editoriales.OrderBy(e => e.NombreEditorial).ToList();
-            return View(editoriales);
-        }
-
-        public ActionResult JsonListar()
-        {
-            List<Editoriales> editoriales = this.baseDatos.Editoriales.OrderBy(e => e.NombreEditorial).ToList();
-            return Json(editoriales, JsonRequestBehavior.AllowGet);
         }
 
         // Método Agregar
@@ -82,16 +82,17 @@ namespace AccentureProyectoIntegrador.Controllers
         [HttpPost]
         public ActionResult Agregar(Editoriales editorial)
         {
-            this.baseDatos.Editoriales.Add(editorial);
-            this.baseDatos.SaveChanges();
+            this.db.Editoriales.Add(editorial);
+            this.db.SaveChanges();
             return RedirectToAction("Listar");
         }
 
+        // Método Eliminar
         public ActionResult Eliminar(int id)
         {
-            Editoriales editorial = this.baseDatos.Editoriales.Find(id);
-            this.baseDatos.Editoriales.Remove(editorial);
-            this.baseDatos.SaveChanges();
+            Editoriales editorial = this.db.Editoriales.Find(id);
+            this.db.Editoriales.Remove(editorial);
+            this.db.SaveChanges();
             return RedirectToAction("Listar");
         }
     }

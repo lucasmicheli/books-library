@@ -32,8 +32,9 @@
           </Key>
           <Property Name="IdLibro" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Titulo" Type="varchar" MaxLength="70" Nullable="false" />
+          <Property Name="ISBN" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="FechaPublicacion" Type="date" Nullable="false" />
-          <Property Name="Sinopsis" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Sinopsis" Type="varchar" MaxLength="100" />
           <Property Name="Id_Editorial" Type="int" Nullable="false" />
           <Property Name="Id_Genero" Type="int" Nullable="false" />
         </EntityType>
@@ -46,7 +47,9 @@
           <Property Name="IdAutor" Type="int" Nullable="false" />
         </EntityType>
         <Association Name="FK_Editorial">
-          <End Role="Editoriales" Type="Self.Editoriales" Multiplicity="1" />
+          <End Role="Editoriales" Type="Self.Editoriales" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Libros" Type="Self.Libros" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Editoriales">
@@ -58,7 +61,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Genero">
-          <End Role="Generos" Type="Self.Generos" Multiplicity="1" />
+          <End Role="Generos" Type="Self.Generos" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Libros" Type="Self.Libros" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Generos">
@@ -172,8 +177,9 @@
           </Key>
           <Property Name="IdLibro" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Titulo" Type="String" Nullable="false" MaxLength="70" FixedLength="false" Unicode="false" />
+          <Property Name="ISBN" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="FechaPublicacion" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="Sinopsis" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Sinopsis" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="Id_Editorial" Type="Int32" Nullable="false" />
           <Property Name="Id_Genero" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Editoriales" Relationship="AccentureProyectoIntegradorModel.FK_Editorial" FromRole="Libros" ToRole="Editoriales" />
@@ -181,7 +187,9 @@
           <NavigationProperty Name="Autores" Relationship="AccentureProyectoIntegradorModel.LibrosXAutores" FromRole="Libros" ToRole="Autores" />
         </EntityType>
         <Association Name="FK_Editorial">
-          <End Type="AccentureProyectoIntegradorModel.Editoriales" Role="Editoriales" Multiplicity="1" />
+          <End Type="AccentureProyectoIntegradorModel.Editoriales" Role="Editoriales" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Type="AccentureProyectoIntegradorModel.Libros" Role="Libros" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Editoriales">
@@ -193,7 +201,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Genero">
-          <End Type="AccentureProyectoIntegradorModel.Generos" Role="Generos" Multiplicity="1" />
+          <End Type="AccentureProyectoIntegradorModel.Generos" Role="Generos" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Type="AccentureProyectoIntegradorModel.Libros" Role="Libros" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Generos">
@@ -245,6 +255,7 @@
                 <ScalarProperty Name="Id_Editorial" ColumnName="Id_Editorial" />
                 <ScalarProperty Name="Sinopsis" ColumnName="Sinopsis" />
                 <ScalarProperty Name="FechaPublicacion" ColumnName="FechaPublicacion" />
+                <ScalarProperty Name="ISBN" ColumnName="ISBN" />
                 <ScalarProperty Name="Titulo" ColumnName="Titulo" />
                 <ScalarProperty Name="IdLibro" ColumnName="IdLibro" />
               </MappingFragment>

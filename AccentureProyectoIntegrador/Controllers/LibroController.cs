@@ -15,17 +15,17 @@ namespace AccentureProyectoIntegrador.Controllers
         }
 
         [HttpPost]
-        public ActionResult Agregar(Libros book, IEnumerable<int> autores)
+        public ActionResult Agregar(Libros libro, IEnumerable<int> autores)
         {
             AccentureProyectoIntegradorEntities db = new AccentureProyectoIntegradorEntities();
 
             foreach (int autorActual in autores)
             {
                 Autores autor = db.Autores.Find(autorActual);
-                book.Autores.Add(autor);
+                libro.Autores.Add(autor);
 
             }
-            db.Libros.Add(book);
+            db.Libros.Add(libro);
             db.SaveChanges();
             return Content("Libro añadido satisfactoriamente.");
         }
@@ -38,18 +38,18 @@ namespace AccentureProyectoIntegrador.Controllers
         }
 
         [HttpPost]
-        public ActionResult Editar(Libros book, IEnumerable<int> autores)
+        public ActionResult Editar(Libros libro, IEnumerable<int> autores)
         {
             AccentureProyectoIntegradorEntities db = new AccentureProyectoIntegradorEntities();
 
-            Libros libro = db.Libros.Find(book.IdLibro);
-            libro.Titulo = book.Titulo;
-            libro.Autores.Clear();
+            Libros libroA = db.Libros.Find(libro.IdLibro);
+            libroA.Titulo = libro.Titulo;
+            libroA.Autores.Clear();
 
             foreach (int autorActual in autores)
             {
                 Autores escritoPor = db.Autores.Find(autorActual);
-                libro.Autores.Add(escritoPor);
+                libroA.Autores.Add(escritoPor);
 
             }
             db.SaveChanges();

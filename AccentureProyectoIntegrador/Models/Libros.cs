@@ -22,6 +22,7 @@ namespace AccentureProyectoIntegrador.Models
     
         public int IdLibro { get; set; }
         public string Titulo { get; set; }
+        public string ISBN { get; set; }
         public System.DateTime FechaPublicacion { get; set; }
         public string Sinopsis { get; set; }
         public int Id_Editorial { get; set; }

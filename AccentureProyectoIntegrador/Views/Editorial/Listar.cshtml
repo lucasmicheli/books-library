@@ -1,14 +1,12 @@
 ﻿@model IEnumerable<AccentureProyectoIntegrador.Models.Editoriales>
 
-@{
-    Layout = null;
-}
 
 <script>
     document.ready(function () {
         InputDeviceInfo.addClass("form-control");
     })
 </script>
+
 <div class="text-right">
     @Html.ActionLink(" ", "Agregar", null,
     new
@@ -31,7 +29,7 @@
             <tr>
                 <td>@p.IdEditorial</td>
                 <td>@p.NombreEditorial</td>
-                <td class="text-center">
+                <td class="text-right">
                     @Html.ActionLink(" ", "Editar", new { Id = p.IdEditorial },
                     new
                     {
@@ -40,7 +38,12 @@
                     })
 
                     &nbsp &nbsp &nbsp
-                    <!--PONER BOTON ELIMINAR-->
+                    @Html.ActionLink(" ", "Eliminar", new { Id = p.IdEditorial },
+                    new
+                    {
+                        @class = "glyphicon glyphicon-trash",
+                        style = "font-size:1.5em"
+                    })
                 </td>
             </tr>
         }

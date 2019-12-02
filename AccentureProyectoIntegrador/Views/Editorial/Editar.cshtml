@@ -1,7 +1,26 @@
-﻿
+﻿@model AccentureProyectoIntegrador.Models.Editoriales
+
 @{
-    ViewBag.Title = "Editar";
+    ViewBag.Title = "Editar Editorial";
 }
 
-<h2>Editar</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.LabelFor(editorial => editorial.NombreEditorial)
+    @Html.EditorFor(editorial => editorial.NombreEditorial,
+    new
+    {
+            htmlAttributes = new
+            {
+                @class = "form-control",
+            placerholder = "Ingrese nombre de la editorial editorial:"
+        }
+    })
+
+    <button class="btn btn-primary form-control" style="margin-top:1em">
+        Aceptar
+    </button>
+
+}
 

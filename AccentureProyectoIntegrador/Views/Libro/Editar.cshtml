@@ -8,11 +8,13 @@
 @{
     AccentureProyectoIntegradorEntities db = new AccentureProyectoIntegradorEntities();
     List<Autores> autores = db.Autores.OrderBy(au => au.NombreAutor).ToList();
+    List<Editoriales> editoriales = db.Editoriales.ToList();
+    List<Generos> generos = db.Generos.ToList();
 }
 
 <script>
     function nuevoAutor() {
-        var lista = document.getElementById("listaAutores");
+        var lista = document.getElementById("Autores");
         var select = lista.firstElementChild;
         var copiaSelect = select.cloneNode(true);
         copiaSelect.selectedIndex = 0;
@@ -20,94 +22,82 @@
     }
 </script>
 
+<main class="container">
+    <h1> @this.ViewBag.TituloPagina </h1>
 
-@using (Html.BeginForm())
-{
-    @Html.LabelFor(libro => libro.Titulo)
-    @Html.EditorFor(libro => libro.Titulo,
-    new
-    {
 
-            htmlAttributes = new
-            {
-                @class = "form-control",
-            placeholder = "Ingrese título del libro"
-        }
-    });
+    <form method="post">
+        Nombre Libro:
+        <input type="text" name="Titulo" value="@this.Model.Titulo" class="form-control" required maxlength="50" placeholder="Ingrese nombre libro" />
+        ISBN:
+        <input type="text" name="ISBN" value="@this.Model.ISBN" class="form-control" required maxlength="200" placeholder="Ingrese ISBN" />
+        Sinopsis:
+        <input type="text" name="Sinopsis" value="@this.Model.Sinopsis" class="form-control" required maxlength="200" placeholder="Ingrese Sinopsis" />
 
-    <div>Autores:</div>
-    <div id="listaAutores">
-
-        @if (this.Model != null)
+        @Html.HiddenFor(model => this.Model.IdLibro)
+        <div id="Autores">
+        Autores:
+        @foreach (var aut in this.Model.Autores)
         {
-            foreach (Autores autorLibro in this.Model.Autores)
+        <select required name="autores" class="form-control">
+
+            <option selected="selected" value="@aut.IdAutor">@aut.NombreAutor  </option>
+            @foreach (var autor in autores)
             {
-                <select name="autores" class="form-control">
-                    <option>Seleccione un autor...</option>
-                    @foreach (Autores autorActual in autores)
-                    {
-                        <option @(autorActual.IdAutor.Equals(autorLibro.IdAutor) ? "selected" : "")
-                                value="@autorActual.IdAutor">
-                            @autorActual.NombreAutor
-                        </option>
-                    }
-                </select>
-            }
-        }
-        else
-        {
-            <select name="autores" class="form-control">
-                <option selected>Seleccione un autor...</option>
-                @foreach (Autores autor in autores)
+                if (aut.NombreAutor != autor.NombreAutor)
                 {
                     <option value="@autor.IdAutor">@autor.NombreAutor</option>
                 }
-            </select>
+
+            }
+        </select>
         }
-    </div>
-    <div class="text-right">
-        <a onclick="nuevoAutor()">Agregar Autor</a>
-    </div>
 
-    <button class="btn btn-primary form-control" style="margin-top:1em">
-        Enviar
-    </button>
 
-    <script>
-        function postbackForm() {
-            var request = new XMLHttpRequest();
-            request.open("POST", window.location.pathname)
-            request.onreadystatechange = function (resp) {
-                if ((resp.currentTarget.status == 200) && (resp.currentTarget.readyState == 4)) {
-                    var btn = document.getElementById("mostrarModal");
-                    var msg = document.getElementById("contenidoInformacion");
-                    msg.innerHTML = resp.currentTarget.responseText;
-                    btn.click();
+        </div>
+
+        <div class="text-right">
+            <a onclick="nuevoAutor()" class="btn">Agregar autor</a>
+        </div>
+
+        <div>Editorial:</div>
+        <select required name="editoriales" class="form-control">
+            @foreach (var edi in editoriales)
+            {
+                if (edi == this.Model.Editoriales)
+                {
+                    <option selected="selected" value="@edi.IdEditorial">@edi.NombreEditorial</option>
+                }
+                else
+                {
+                    <option value="@edi.IdEditorial">@edi.NombreEditorial</option>
                 }
             }
-            var formulario = document.getElementsByName("form")[0];
-            request.send(new FormData(formulario));
-        }
-    </script>
+        </select>
 
-    <button type="button" class="btn btn-primary form-control"
-            style="margin-top:1em" onclick="postbackForm()">
-        Enviar con Ajax
-    </button>
-}
 
-<button type="button" data-toggle="modal" data-target="#myModal"
-        style="display:none" id="mostrarModal">
-</button>
+        <div>Genero:</div>
+        <select required name="generos" class="form-control">
+            @foreach (var gen in generos)
+            {
+                if (gen == this.Model.Generos)
+                {
+                    <option selected="selected" value="@gen.IdGenero">@gen.NombreGenero</option>
+                }
+                else
+                {
+                    <option value="@gen.IdGenero">@gen.NombreGenero</option>
+                }
+            }
 
-<div id="myModal" class="modal fade container">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header text-center alert-info"><h3>Información</h3></div>
-            <div class="modal-body text-center" id="contenidoInformacion"></div>
-            <div class="modal-footer text-right">
-                <button type="button" class="btn btn-info" data-dismiss="modal">Cerrar</button>
-            </div>
-        </div>
-    </div>
-</div>
+        </select>
+
+        <button class="btn btn-primary form-control" style="margin-top:1em">
+            Enviar
+        </button>
+
+    </form>
+
+</main>
+
+

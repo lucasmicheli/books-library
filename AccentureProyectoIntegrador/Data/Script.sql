@@ -11,9 +11,9 @@ CREATE TABLE Libros (
 	IdLibro INT PRIMARY KEY IDENTITY (1,1),
 	Titulo VARCHAR(70) NOT NULL,
 	ISBN VARCHAR(20) NOT NULL,
-	FechaPublicacion DATE NOT NULL,
+	/*FechaPublicacion DATE NOT NULL,*/
 	Sinopsis VARCHAR(100),
-	Portada VARCHAR(350),
+	/*Portada VARCHAR(350),*/
 	Id_Editorial int not null,
 	Id_Genero int not null,
 	CONSTRAINT UQ_Libro UNIQUE (Titulo),
@@ -113,6 +113,28 @@ INSERT INTO Generos (NombreGenero) VALUES
 ('Ensayos');
 GO
 
+/* Sin fecha */
+INSERT INTO Libros (Titulo, ISBN, Sinopsis, Id_Editorial, Id_Genero)
+VALUES
+('En defensa de la ilustración','978-950-12-9772-0','Datos, ciencia y estadística',1,1),
+('La Uruguaya','978-950-04-3820-9','La vida de un escritor en decadencia',12,2),
+('Despertares','978-84-339-7405-1','Un médico y una cura psiquiátrica',8,2),
+('Ficciones','978-987-566-647-4','Lo mejor de Borges',7,2),
+('Don Quijote de la Mancha','978-950-46-3967-1','Nueva edición de un clásico español',5,3),
+('Primavera Silenciosa','978-84-16771-17-2','Libro sobre ecología',4,2);
+
+
+/* Sin Portada */
+INSERT INTO Libros (Titulo, ISBN, FechaPublicacion, Sinopsis, Id_Editorial, Id_Genero)
+VALUES
+('En defensa de la ilustración','978-950-12-9772-0','2018-06-01','Datos, ciencia y estadística',1,1),
+('La Uruguaya','978-950-04-3820-9','2016-02-10','La vida de un escritor en decadencia',12,2),
+('Despertares','978-84-339-7405-1','1991-12-12','Un médico y una cura psiquiátrica',8,2),
+('Ficciones','978-987-566-647-4','1980-06-06','Lo mejor de Borges',7,2),
+('Don Quijote de la Mancha','978-950-46-3967-1','1995-07-08','Nueva edición de un clásico español',5,3),
+('Primavera Silenciosa','978-84-16771-17-2','1969-05-04','Libro sobre ecología',4,2);
+
+/* Con Portada */
 INSERT INTO Libros (Titulo, ISBN, FechaPublicacion, Sinopsis, Portada, Id_Editorial, Id_Genero)
 VALUES
 ('En defensa de la ilustración','978-950-12-9772-0','2018-06-01','Datos, ciencia y estadística','https://static0planetadelibroscom.cdnstatics.com/usuaris/libros/fotos/270/m_libros/portada_en-defensa-de-la-ilustracion_steven-pinker_201803271600.jpg',1,1),

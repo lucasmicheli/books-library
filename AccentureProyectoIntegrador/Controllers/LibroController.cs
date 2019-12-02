@@ -11,9 +11,11 @@ namespace AccentureProyectoIntegrador.Controllers
     {
         public ActionResult Agregar()
         {
-            return View("Editar");
+            return View("Agregar");
         }
 
+        // Viejo Método
+        /*
         [HttpPost]
         public ActionResult Agregar(Libros libro, IEnumerable<int> autores)
         {
@@ -29,6 +31,46 @@ namespace AccentureProyectoIntegrador.Controllers
             db.SaveChanges();
             return Content("Libro añadido satisfactoriamente.");
         }
+        */
+
+        // Nuevo Método
+        [HttpPost]
+        public ActionResult Agregar(string titulo, IEnumerable<int> autores, string ISBN, string sinopsis, int editoriales, int generos)
+        {
+            AccentureProyectoIntegradorEntities db = new AccentureProyectoIntegradorEntities();
+
+            Libros libro = new Libros();
+
+            if(autores != null)
+            {
+                foreach (int autorActual in autores)
+                {
+                    Autores autor = db.Autores.Find(autorActual);
+                    libro.Autores.Add(autor);
+
+                }
+            }
+
+            libro.Titulo = titulo;
+            libro.Sinopsis = sinopsis;
+            libro.ISBN = ISBN; 
+
+            if (editoriales != 1)
+            {
+                libro.Editoriales = db.Editoriales.Find(editoriales);
+            }
+
+            if (generos != 1)
+            {
+                libro.Generos = db.Generos.Find(generos);
+            }
+
+            db.Libros.Add(libro);
+            db.SaveChanges();
+            //return Content("Libro añadido satisfactoriamente.");
+            return RedirectToAction("Listar");
+        }
+
 
         public ActionResult Editar(int id)
         {
@@ -81,6 +123,15 @@ namespace AccentureProyectoIntegrador.Controllers
                     ));
             }
             return View(qry.ToList());
+        }
+
+        public ActionResult Eliminar(int id)
+        {
+            AccentureProyectoIntegradorEntities db = new AccentureProyectoIntegradorEntities();
+            Libros libros = db.Libros.Find(id);
+            db.Libros.Remove(libros);
+            db.SaveChanges();
+            return RedirectToAction("Listar");
         }
     }
 }

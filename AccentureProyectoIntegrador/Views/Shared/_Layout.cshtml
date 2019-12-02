@@ -10,17 +10,55 @@
     <script src="~/Scripts/jquery.validate.min.js"></script>
     <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
     <script src="~/Scripts/bootstrap.js"></script>
+    <link href="~/Content/miEstilo.css" rel="stylesheet" />
+    <script src="~/Scripts/misScripts.js"></script>
 </head>
 
 <body>
-    <header class="jumbotron">
-        <h1 class="text-center">Libreria Accenture Academy</h1>
+    <header>
+        <!--Logo Página-->
+        <div>
+            <h1 class="text-center" id="logo"><a  style="color:white; text-decoration: none" href="~/Home/index">Librería Academy</a></h1>
+        </div>
+
+        <!--Menú Opciones-->
+        <nav id="menu-nav">
+            <ul>
+                <li><a href="~/Home/index">Inicio</a></li>
+                <li><a href="~/Libro/Listar">Catálogo</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+        </nav>
     </header>
+    <div class="container">
+        <div class="container list-inline" style="display: flex; padding-top:1em">
+            <li><a class="btn btn-default" href="~/Libro/Listar">Libros &raquo;</a></li>
+            <li><a class="btn btn-default" href="~/Autor/Listar">Autores &raquo;</a></li>
+            <li><a class="btn btn-default" href="~/Editorial/Listar">Editoriales &raquo;</a></li>
+            <li><a class="btn btn-default" href="~/Genero/Listar">Géneros &raquo;</a></li>
+        </div>
+    </div>
+    </div>
     <main class="container">
         @RenderBody()
     </main>
-    <footer class="text-center text-info" style="padding:1em">
-        Accenture Academy &copy; - EducaciónIT 2019
+    <footer>
+        <div class="jumbotron" style="padding-left:10em">
+            <h3 id="contacto">Contacto</h3>
+            <address>
+                Librería Accenture Academy<br />
+                San Martín 6559, MDQ<br />
+                (0223) 467-6578<br />
+            </address>
+
+            <address>
+                <strong>Email:</strong>   <a href="mailto:libreria@accenture.com">libreria@accenture.com</a><br />
+            </address>
+        </div>
+
+        <div class="text-center text-info" style="padding:1em">
+            Accenture Academy &copy; - EducaciónIT 2019
+        </div>
     </footer>
 </body>
 

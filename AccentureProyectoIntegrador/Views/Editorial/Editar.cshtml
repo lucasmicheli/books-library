@@ -7,6 +7,7 @@
 
 @using (Html.BeginForm())
 {
+    @Html.HiddenFor(editorial => editorial.IdEditorial);
     @Html.LabelFor(editorial => editorial.NombreEditorial)
     @Html.EditorFor(editorial => editorial.NombreEditorial,
     new
@@ -14,7 +15,7 @@
             htmlAttributes = new
             {
                 @class = "form-control",
-            placerholder = "Ingrese nombre de la editorial editorial:"
+            placerholder = "Ingrese nombre de la editorial:"
         }
     })
 

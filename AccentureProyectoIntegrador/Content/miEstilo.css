@@ -1,0 +1,148 @@
+﻿* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box
+}
+
+html, body {
+    height: 100%;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+    body > header {
+        display: flex;
+        padding: 0.5rem 1rem;
+        justify-content: space-between;
+        align-items: center;
+        color: white;
+        background-color: grey;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    }
+
+        body > header button {
+            background-color: transparent;
+            border: none;
+            position: relative;
+            z-index: 9999;
+            color: white;
+        }
+
+    body > nav {
+        position: fixed;
+        top: 0;
+        left: -300px;
+        width: 300px;
+        background-color: black;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        transition: all 0.3s ease;
+        height: 100%;
+    }
+
+        body > nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 1rem;
+        }
+
+    body > main {
+        flex-grow: 1;
+        padding: 1rem;
+    }
+
+/*    body > footer {
+        background-color: grey;
+        text-align: center;
+        padding: 1rem;
+    }
+ */
+
+.abierto {
+    left: 0;
+}
+
+.fila {
+    position: relative;
+    margin: auto;
+    width: 100%;
+    height: auto;
+    clear: both;
+    display: table;
+}
+
+
+
+
+/* */
+
+* {
+    margin: 0;
+}
+
+.fondo-rosa {
+    background-color: lightsalmon;
+}
+
+header {
+    display: flex;
+    height: 70px;
+    /*width: 100%;*/
+    align-items: center;
+    justify-content: space-around; /*space-between*/
+    color: white;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+    header nav ul li {
+        display: inline-flex;
+        list-style-type: none;
+        /*justify-content: space-around;*/
+        /*padding: 8px;*/
+    }
+
+        header nav ul li a {
+            text-decoration: none;
+            color: white;
+            margin-left: 8px; /*en vez de padding*/
+        }
+
+section {
+    height: 300px;
+    left: 50px;
+}
+
+#portfolio {
+    height: 700px;
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    z-index: -1;
+}
+
+    #portfolio h2 {
+        color: white;
+        align-items: center;
+        padding-top: 20px;
+    }
+
+.izq {
+    margin-right: 15px;
+}
+
+.abajo {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+.chiquita-izq {
+    margin-right: 10px;
+}

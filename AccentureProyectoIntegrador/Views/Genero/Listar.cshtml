@@ -1,0 +1,50 @@
+﻿@model IEnumerable<AccentureProyectoIntegrador.Models.Generos>
+
+
+<script>
+    document.ready(function () {
+        InputDeviceInfo.addClass("form-control");
+    })</script>
+
+<div class="text-right">
+    @Html.ActionLink(" ", "Agregar", null,
+    new
+        {
+        @class = "glyphicon glyphicon-plus",
+        style = "font-size:1.5em"
+    })
+</div>
+<table class="table table-hover table-striped">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Nombre Género</th>
+            <th class="text-right"></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var p in this.Model)
+        {
+            <tr>
+                <td>@p.IdGenero</td>
+                <td>@p.NombreGenero</td>
+                <td class="text-right">
+                    @Html.ActionLink(" ", "Editar", new { Id = p.IdGenero },
+                    new
+                    {
+                        @class = "glyphicon glyphicon-pencil",
+                        style = "font-size:1.5em"
+                    })
+
+                    &nbsp &nbsp &nbsp
+                    @Html.ActionLink(" ", "Eliminar", new { Id = p.IdGenero },
+                    new
+                    {
+                        @class = "glyphicon glyphicon-trash",
+                        style = "font-size:1.5em"
+                    })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -33,7 +33,6 @@
           <Property Name="IdLibro" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Titulo" Type="varchar" MaxLength="70" Nullable="false" />
           <Property Name="ISBN" Type="varchar" MaxLength="20" Nullable="false" />
-          <Property Name="FechaPublicacion" Type="date" Nullable="false" />
           <Property Name="Sinopsis" Type="varchar" MaxLength="100" />
           <Property Name="Id_Editorial" Type="int" Nullable="false" />
           <Property Name="Id_Genero" Type="int" Nullable="false" />
@@ -178,7 +177,6 @@
           <Property Name="IdLibro" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Titulo" Type="String" Nullable="false" MaxLength="70" FixedLength="false" Unicode="false" />
           <Property Name="ISBN" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="FechaPublicacion" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="Sinopsis" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="Id_Editorial" Type="Int32" Nullable="false" />
           <Property Name="Id_Genero" Type="Int32" Nullable="false" />
@@ -254,7 +252,6 @@
                 <ScalarProperty Name="Id_Genero" ColumnName="Id_Genero" />
                 <ScalarProperty Name="Id_Editorial" ColumnName="Id_Editorial" />
                 <ScalarProperty Name="Sinopsis" ColumnName="Sinopsis" />
-                <ScalarProperty Name="FechaPublicacion" ColumnName="FechaPublicacion" />
                 <ScalarProperty Name="ISBN" ColumnName="ISBN" />
                 <ScalarProperty Name="Titulo" ColumnName="Titulo" />
                 <ScalarProperty Name="IdLibro" ColumnName="IdLibro" />

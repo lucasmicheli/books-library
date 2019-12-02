@@ -9,7 +9,12 @@
     AccentureProyectoIntegradorEntities db = new AccentureProyectoIntegradorEntities();
 }
 <div class="text-right">
-    @Html.ActionLink("Agregar", "Agregar")
+    @Html.ActionLink(" ", "Agregar", null,
+        new
+            {
+            @class = "glyphicon glyphicon-plus",
+            style = "font-size:1.5em"
+        })
 </div>
 
 @using (Html.BeginForm())
@@ -51,8 +56,20 @@
                         }
                     </td>
                     <td class="text-right">
-                        @Html.ActionLink("Editar", "Editar", new { Id = libro.IdLibro })
-                        @Html.ActionLink("Eliminar", "Eliminar", new { Id = libro.IdLibro })
+                        @Html.ActionLink(" ", "Editar", new { Id = libro.IdLibro },
+                        new
+                        {
+                            @class = "glyphicon glyphicon-pencil",
+                            style = "font-size:1.5em"
+                        })
+
+                        &nbsp &nbsp &nbsp
+                        @Html.ActionLink(" ", "Eliminar", new { Id = libro.IdLibro },
+                        new
+                        {
+                            @class = "glyphicon glyphicon-trash",
+                            style = "font-size:1.5em"
+                        })
                     </td>
                 </tr>
             }

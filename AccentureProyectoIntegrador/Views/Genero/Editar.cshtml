@@ -1,0 +1,29 @@
+﻿@using AccentureProyectoIntegrador.Models
+@model Generos
+
+@{
+    ViewBag.Title = "Editar Género";
+}
+
+
+@using (Html.BeginForm())
+{
+    @Html.HiddenFor(genero => genero.IdGenero);
+    @Html.LabelFor(genero => genero.NombreGenero)
+    @Html.EditorFor(genero => genero.NombreGenero,
+    new
+    {
+            htmlAttributes = new
+            {
+                @class = "form-control",
+            placerholder = "Ingrese nombre de la editorial editorial:"
+        }
+    })
+    //@Html.EditorFor(g => g.Libros)
+
+    <button class="btn btn-primary form-control" style="margin-top:1em">
+        Aceptar
+    </button>
+
+}
+
